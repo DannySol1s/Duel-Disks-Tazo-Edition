@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap');
+
+/* ============================
+   CSS CUSTOM PROPERTIES
+   ============================ */
+:root {
+  /* Palette */
+  --clr-bg:        #07090f;
+  --clr-surface:   #0e1120;
+  --clr-surface-2: #151929;
+  --clr-border:    #2a2f4a;
+
+  --clr-gold:      #e8a020;
+  --clr-gold-light:#f5c842;
+  --clr-gold-dim:  #7a5510;
+
+  --clr-violet:    #7c3aed;
+  --clr-violet-light: #a855f7;
+  --clr-violet-dim:   #3b1877;
+
+  --clr-teal:      #06b6d4;
+  --clr-red:       #ef4444;
+  --clr-text:      #e2e8f0;
+  --clr-muted:     #64748b;
+
+  /* Gradients */
+  --grad-gold:   linear-gradient(135deg, #f5c842 0%, #e8a020 50%, #7a5510 100%);
+  --grad-violet: linear-gradient(135deg, #a855f7 0%, #7c3aed 50%, #3b1877 100%);
+  --grad-bg:     radial-gradient(ellipse at 20% 0%, #1a0a3b 0%, #07090f 60%);
+  --grad-arena:  radial-gradient(ellipse at 50% 30%, #1a063b 0%, #07090f 70%);
+
+  /* Shadows */
+  --shadow-gold:   0 0 20px rgba(232, 160, 32, 0.4);
+  --shadow-violet: 0 0 20px rgba(124, 58, 237, 0.5);
+  --shadow-card:   0 8px 32px rgba(0,0,0,0.6);
+
+  /* Fonts */
+  --font-title: 'Cinzel Decorative', serif;
+  --font-body:  'Exo 2', sans-serif;
+
+  /* Spacing */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-circle: 50%;
+}
+
+/* ============================
+   RESET & BASE
+   ============================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--clr-bg);
+  background-image: var(--grad-bg);
+  background-attachment: fixed;
+  color: var(--clr-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============================
+   SCROLLBAR
+   ============================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--clr-surface); }
+::-webkit-scrollbar-thumb { background: var(--clr-gold-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--clr-gold); }
+
+/* ============================
+   TYPOGRAPHY
+   ============================ */
+h1, h2, h3 {
+  font-family: var(--font-title);
+  line-height: 1.2;
+}
+
+/* ============================
+   UTILITY CLASSES
+   ============================ */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glow-gold { box-shadow: var(--shadow-gold); }
+.glow-violet { box-shadow: var(--shadow-violet); }
+
+.text-gold { color: var(--clr-gold); }
+.text-violet { color: var(--clr-violet-light); }
+.text-muted { color: var(--clr-muted); }
+
+/* ============================
+   STAR PARTICLES (background)
+   ============================ */
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.stars-bg::before,
+.stars-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(white, transparent 60%);
+  opacity: 0.15;
+  animation: drift 20s ease-in-out infinite alternate;
+}
+.stars-bg::before {
+  width: 600px; height: 600px;
+  top: -200px; left: -100px;
+  background: radial-gradient(var(--clr-violet-dim), transparent 70%);
+}
+.stars-bg::after {
+  width: 400px; height: 400px;
+  bottom: -100px; right: -50px;
+  background: radial-gradient(var(--clr-gold-dim), transparent 70%);
+  animation-delay: -10s;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40px, 20px) scale(1.1); }
+}
+
+/* ============================
+   ANIMATIONS
+   ============================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(232,160,32,0.3); }
+  50%       { box-shadow: 0 0 30px rgba(232,160,32,0.8), 0 0 60px rgba(232,160,32,0.3); }
+}
+
+@keyframes pulse-violet {
+  0%, 100% { box-shadow: 0 0 10px rgba(124,58,237,0.3); }
+  50%       { box-shadow: 0 0 30px rgba(124,58,237,0.8), 0 0 60px rgba(124,58,237,0.3); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes tazo-flip {
+  0%   { transform: rotateY(0deg) scale(1); }
+  50%  { transform: rotateY(90deg) scale(0.8); }
+  100% { transform: rotateY(0deg) scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px) rotate(-2deg); }
+  40% { transform: translateX(8px) rotate(2deg); }
+  60% { transform: translateX(-5px) rotate(-1deg); }
+  80% { transform: translateX(5px) rotate(1deg); }
+}
+
+@keyframes winner-bounce {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50%       { transform: scale(1.06) translateY(-8px); }
+}
+
+@keyframes loser-shake {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes lightning {
+  0%, 100% { opacity: 0; }
+  10%, 90%  { opacity: 1; }
+}
