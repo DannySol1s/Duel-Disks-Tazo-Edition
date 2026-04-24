@@ -53,7 +53,7 @@ export function p1Confirm(sel: PlayerSelection): void {
   gameState.update(s => ({ ...s, phase: 'p2-select', p1Selection: sel }));
 }
 
-// ─── Jugador 2 confirma → resolver ronda ──────────────────────────────────
+// ─── Jugador 2 confirma → fase de animación ──────────────────────────────
 export function p2Confirm(sel: PlayerSelection): void {
   const s = get(gameState);
   if (!s.p1Selection) return;
@@ -66,13 +66,19 @@ export function p2Confirm(sel: PlayerSelection): void {
   const p1Hand = s.p1Hand.filter(c => c.id !== s.p1Selection!.card.id);
   const p2Hand = s.p2Hand.filter(c => c.id !== sel.card.id);
 
+  // Guardar todo pero pasar primero por 'revealing' (animación)
   gameState.update(() => ({
-    ...s, phase: 'reveal',
+    ...s, phase: 'revealing',
     p2Selection: sel, p1Hand, p2Hand,
     p1Score, p2Score,
     roundHistory: [...s.roundHistory, result],
     lastResult: result,
   }));
+}
+
+// ─── Terminar animación y mostrar resultado ────────────────────────────────
+export function triggerReveal(): void {
+  gameState.update(s => ({ ...s, phase: 'reveal' }));
 }
 
 // ─── Avanzar a la siguiente ronda o terminar ──────────────────────────────
