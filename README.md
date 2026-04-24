@@ -1,42 +1,63 @@
-# sv
+# ⚔️ Duel Disks: Tazo Edition (Duelo de Quintetos)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+¡Bienvenido a **Duel Disks: Tazo Edition**! Un juego de cartas temático de Yu-Gi-Oh! diseñado con la estética de los clásicos tazos coleccionables. Enfrenta a dos duelistas en una batalla épica de 5 rondas donde la estrategia y la suerte deciden al ganador.
 
-## Creating a project
+![Duelo de Quintetos](https://images.ygoprodeck.com/images/cards_small/83764718.jpg) <!-- Imagen de ejemplo o banner si existiera -->
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 🎮 Características del Juego
 
-```sh
-# create a new project
-npx sv create my-app
-```
+- **Duelo de Quintetos**: Cada jugador recibe 5 cartas aleatorias de la base de datos de Yu-Gi-Oh! (Speed Duel / Rush Duel).
+- **Selección Ciega**: Los jugadores eligen su carta y modo de batalla en secreto, pasando el dispositivo o simplemente ocultando su elección.
+- **Modos de Combate**: Elige entre **Modo Ataque** (⚔️) o **Modo Defensa** (🛡️) para cada ronda.
+- **Animaciones Dinámicas**:
+  - Efectos de "volteo" (flip) al revelar cartas.
+  - Cuenta regresiva dramática con efectos de relámpagos.
+  - Resplandores (glow) para los ganadores y desvanecimiento para los perdedores.
+- **Diseño Premium**: Interfaz moderna con *glassmorphism*, modo oscuro, y tipografías elegantes (Cinzel Decorative & Exo 2).
+- **Totalmente Responsivo**: Optimizado para verse en pantalla completa sin necesidad de desplazarse.
 
-To recreate this project with the same configuration:
+## 📜 Reglas de Batalla
 
-```sh
-# recreate this project
-npx sv@0.15.1 create --template minimal --types ts --install npm ./
-```
+El juego utiliza una lógica de resolución basada en los atributos clásicos de Yu-Gi-Oh!:
 
-## Developing
+1. **⚔️ vs ⚔️**: Gana la carta con el mayor **ATK**.
+2. **⚔️ vs 🛡️**: El atacante debe superar la **DEF** del defensor. Si la DEF es mayor o igual, el defensor gana la ronda.
+3. **🛡️ vs 🛡️**: Si ambos jugadores eligen defensa, el ganador se decide por el **Nivel (★)** de la carta.
+4. **Empate**: Si los valores son idénticos, la ronda se declara empate.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+*El primer duelista en ganar 3 rondas se lleva la victoria total.*
 
-```sh
-npm run dev
+## 🚀 Tecnologías Utilizadas
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+- **Core**: [Svelte 5](https://svelte.dev/) (usando Runes como `$state` y `$derived`).
+- **Lógica**: TypeScript para un tipado seguro y manejo de estados.
+- **Estilos**: Vanilla CSS con variables personalizadas y animaciones complejas.
+- **API**: [YGOPRODeck API](https://db.ygoprodeck.com/api-guide/) para obtener datos e imágenes reales de las cartas.
 
-## Building
+## 🛠️ Instalación y Uso
 
-To create a production version of your app:
+1. **Clonar el repositorio**:
+   ```sh
+   git clone https://github.com/DannySol1s/Duel-Disks-Tazo-Edition.git
+   ```
+2. **Instalar dependencias**:
+   ```sh
+   npm install
+   ```
+3. **Ejecutar en modo desarrollo**:
+   ```sh
+   npm run dev
+   ```
+4. **Abrir en el navegador**:
+   Visita `http://localhost:5173` para empezar el duelo.
 
-```sh
-npm run build
-```
+## 📁 Estructura del Proyecto
 
-You can preview the production build with `npm run preview`.
+- `src/lib/gameStore.ts`: Motor lógico del juego y manejo de estados de Svelte.
+- `src/lib/components/`: Componentes reutilizables como `BattlePhase`, `RevealCountdown`, y `ResultPhase`.
+- `src/app.css`: Sistema de diseño global y tokens de estilo.
+- `src/routes/+page.svelte`: Punto de entrada principal y layout del juego.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+---
+
+Desarrollado con ❤️ por **Antigravity** en colaboración con el usuario. ¡Que comience el duelo!
