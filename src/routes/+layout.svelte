@@ -1,12 +1,10 @@
 <script lang="ts">
   import '../app.css';
-  import Header from '$lib/components/Header.svelte';
 
   let { children } = $props();
 </script>
 
 <div class="stars-bg"></div>
-<Header />
 <main>
   {@render children()}
 </main>
@@ -15,8 +13,11 @@
   main {
     position: relative;
     z-index: 1;
+    height: 100vh;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 </style>

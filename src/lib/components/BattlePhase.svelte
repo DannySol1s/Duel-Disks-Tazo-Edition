@@ -171,11 +171,11 @@
   /* ─── Round bar ─────────────────────────────────────────────── */
   .round-bar {
     display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 0.75rem;
+    flex-wrap: wrap; gap: 0.5rem;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 14px; padding: 0.7rem 1.2rem;
-    margin-bottom: 1.25rem;
+    border-radius: 10px; padding: 0.4rem 1rem;
+    margin-bottom: 0.75rem;
   }
   .round-info { font-size: 0.85rem; color: #94a3b8; }
   .round-info strong { color: #a855f7; font-size: 1rem; }
@@ -193,41 +193,41 @@
 
   /* ─── Pass notice ────────────────────────────────────────────── */
   .pass-notice {
-    text-align: center; padding: 1.5rem;
+    text-align: center; padding: 0.8rem;
     background: rgba(124,58,237,0.08);
     border: 1px solid rgba(124,58,237,0.2);
-    border-radius: 16px; margin-bottom: 1.25rem;
+    border-radius: 12px; margin-bottom: 0.75rem;
   }
-  .pass-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .pass-icon { font-size: 2rem; margin-bottom: 0.25rem; }
   .pass-notice p { font-size: 1rem; color: #e2e8f0; }
   .pass-notice .sub { font-size: 0.78rem; color: #64748b; margin-top: 4px; }
 
   /* ─── Select header ──────────────────────────────────────────── */
-  .select-header { text-align: center; margin-bottom: 1rem; }
-  .select-header h2 { font-family: var(--font-title, serif); font-size: 1rem; }
+  .select-header { text-align: center; margin-bottom: 0.5rem; }
+  .select-header h2 { font-family: var(--font-title, serif); font-size: 0.9rem; }
   .select-header.gold h2 { color: #f5c842; }
   .select-header.violet h2 { color: #a855f7; }
 
   /* ─── Hand grid ──────────────────────────────────────────────── */
   .hand-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1rem; margin-bottom: 1.25rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem; margin-bottom: 0.75rem;
   }
   .card-slot {
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    padding: 10px; border-radius: 14px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 6px; border-radius: 10px; cursor: pointer;
     background: rgba(255,255,255,0.02);
     border: 2px solid rgba(255,255,255,0.06);
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
-  .card-slot:hover { transform: translateY(-4px); background: rgba(255,255,255,0.05); }
+  .card-slot:hover { transform: translateY(-3px); background: rgba(255,255,255,0.05); }
   .card-slot.selected {
     border-color: #f5c842;
-    box-shadow: 0 0 16px rgba(245,200,66,0.4);
+    box-shadow: 0 0 12px rgba(245,200,66,0.4);
     background: rgba(245,200,66,0.06);
   }
-  .card-img { width: 100px; height: 100px; object-fit: cover; object-position: top; border-radius: 8px; }
+  .card-img { width: 100%; aspect-ratio: 1; max-width: 90px; object-fit: cover; object-position: top; border-radius: 6px; }
   .card-name {
     font-size: 0.65rem; font-weight: 600; color: #e2e8f0;
     text-align: center; width: 100%;
@@ -282,29 +282,29 @@
   /* ─── Reveal ─────────────────────────────────────────────────── */
   .reveal-title {
     text-align: center; font-family: var(--font-title, serif);
-    font-size: 1.1rem; color: #f5c842; margin-bottom: 1.25rem;
+    font-size: 1.1rem; color: #f5c842; margin-bottom: 0.5rem;
     letter-spacing: 0.1em;
   }
   .reveal-arena {
     display: grid; grid-template-columns: 1fr auto 1fr;
-    gap: 1rem; align-items: center; margin-bottom: 1.25rem;
+    gap: 0.5rem; align-items: center; margin-bottom: 0.75rem;
   }
   @media (max-width: 540px) {
     .reveal-arena { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
   }
   .reveal-slot {
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    padding: 1rem; border-radius: 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 0.75rem; border-radius: 12px;
     background: rgba(255,255,255,0.02);
     border: 1px solid rgba(255,255,255,0.07);
     transition: all 0.4s;
   }
-  .reveal-slot.winner { border-color: rgba(245,200,66,0.5); box-shadow: 0 0 24px rgba(245,200,66,0.25); }
+  .reveal-slot.winner { border-color: rgba(245,200,66,0.5); box-shadow: 0 0 16px rgba(245,200,66,0.25); }
   .reveal-slot.loser { opacity: 0.45; filter: grayscale(0.6); }
   .rs-label { font-size: 0.65rem; letter-spacing: 0.15em; font-weight: 700; }
   .rs-label.gold { color: #e8a020; }
   .rs-label.violet { color: #a855f7; }
-  .rs-img { width: 110px; height: 110px; object-fit: cover; object-position: top; border-radius: 10px; }
+  .rs-img { width: 90px; height: 90px; object-fit: cover; object-position: top; border-radius: 8px; }
   .rs-name {
     font-size: 0.7rem; font-weight: 600; color: #e2e8f0; text-align: center;
     max-width: 140px; overflow: hidden; display: -webkit-box;

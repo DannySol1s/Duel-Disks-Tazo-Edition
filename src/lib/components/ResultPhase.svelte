@@ -68,30 +68,30 @@
 </div>
 
 <style>
-  .result-screen { display: flex; flex-direction: column; gap: 1.5rem; }
+  .result-screen { display: flex; flex-direction: column; gap: 0.75rem; }
 
-  .trophy-area { text-align: center; padding: 1.5rem 0; }
-  .trophy { font-size: 3.5rem; animation: bounce 1s ease infinite alternate; }
-  .winner-text { font-family: var(--font-title, serif); font-size: 1.3rem; margin-top: 0.5rem; }
+  .trophy-area { text-align: center; padding: 0.5rem 0; }
+  .trophy { font-size: 3rem; animation: bounce 1s ease infinite alternate; }
+  .winner-text { font-family: var(--font-title, serif); font-size: 1.2rem; margin-top: 0.25rem; }
   .winner-text.gold { color: #f5c842; }
   .winner-text.violet { color: #a855f7; }
   .winner-text.muted { color: #64748b; }
-  .final-score { display: flex; align-items: center; gap: 14px; justify-content: center; margin-top: 0.75rem; }
+  .final-score { display: flex; align-items: center; gap: 14px; justify-content: center; margin-top: 0.25rem; }
   .fscore { font-family: var(--font-title, serif); font-size: 2.5rem; }
   .fscore.gold { color: #f5c842; }
   .fscore.violet { color: #a855f7; }
   .fsep { color: #334155; font-size: 1.5rem; }
 
   /* History */
-  .history-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 1rem; }
-  .history-title { font-family: var(--font-title, serif); font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+  .history-section { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 0.75rem; }
+  .history-title { font-family: var(--font-title, serif); font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; letter-spacing: 0.1em; }
   .ht-header, .ht-row {
     display: grid;
     grid-template-columns: 24px 1fr 72px 20px 1fr 72px 60px;
-    gap: 6px; align-items: center; font-size: 0.68rem;
-    padding: 5px 6px;
+    gap: 4px; align-items: center; font-size: 0.65rem;
+    padding: 4px 6px;
   }
-  .ht-header { color: #475569; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px; margin-bottom: 4px; }
+  .ht-header { color: #475569; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; margin-bottom: 2px; }
   .ht-row { border-radius: 8px; }
   .ht-row.p1 { background: rgba(245,200,66,0.06); }
   .ht-row.p2 { background: rgba(168,85,247,0.06); }

@@ -19,7 +19,7 @@ export async function startGame(): Promise<void> {
   try {
     const url =
       'https://db.ygoprodeck.com/api/v7/cardinfo.php' +
-      '?type=Normal%20Monster%2CEffect%20Monster&num=100&sort=random';
+      '?type=Normal%20Monster,Effect%20Monster&format=Speed%20Duel';
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Error ${res.status} de la API`);
 

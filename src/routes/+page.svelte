@@ -87,8 +87,9 @@
 <style>
   /* ─── Shell ──────────────────────────────────────────────────── */
   .app-shell {
-    min-height: 100vh; display: flex; flex-direction: column;
+    height: 100%; display: flex; flex-direction: column;
     position: relative; z-index: 1;
+    overflow: hidden;
   }
 
   /* ─── Header ─────────────────────────────────────────────────── */
@@ -115,10 +116,14 @@
   /* ─── Main content ────────────────────────────────────────────── */
   .main-content {
     flex: 1; display: flex; justify-content: center;
-    padding: 1.5rem 1rem 3rem;
+    padding: 0.5rem; overflow: hidden;
   }
   .game-section {
     width: 100%; max-width: 700px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   /* ─── Idle / Start screen ─────────────────────────────────────── */
