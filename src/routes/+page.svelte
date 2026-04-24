@@ -128,29 +128,31 @@
 
   /* ─── Idle / Start screen ─────────────────────────────────────── */
   .idle-screen {
-    max-width: 480px; width: 100%;
-    display: flex; flex-direction: column; align-items: center;
-    gap: 1.5rem; padding-top: 2rem; text-align: center;
+    max-width: 800px; width: 100%;
+    height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2rem; padding-top: 0; text-align: center;
   }
   .game-title {
-    font-family: var(--font-title, serif); font-size: 1.6rem;
+    font-family: var(--font-title, serif); font-size: 2.8rem;
     color: #f5c842; line-height: 1.3;
     text-shadow: 0 0 40px rgba(245,200,66,0.3);
   }
-  .game-subtitle { color: #64748b; font-size: 0.85rem; }
+  .game-subtitle { color: #64748b; font-size: 1.1rem; }
 
   .rules-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 0.75rem; width: 100%;
+    gap: 1.5rem; width: 100%;
+    margin: 1rem 0;
   }
   .rule-card {
-    display: flex; flex-direction: column; gap: 4px; align-items: center;
-    padding: 0.9rem; border-radius: 14px;
+    display: flex; flex-direction: column; gap: 8px; align-items: center;
+    padding: 1.5rem; border-radius: 16px;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.07);
   }
-  .rule-icon { font-size: 1rem; }
-  .rule-text { font-size: 0.72rem; color: #94a3b8; }
+  .rule-icon { font-size: 1.8rem; }
+  .rule-text { font-size: 1rem; color: #94a3b8; }
 
   .error-box {
     padding: 0.75rem 1.25rem; border-radius: 10px;
@@ -159,9 +161,9 @@
   }
 
   .btn-start {
-    font-family: var(--font-title, serif); font-size: 1rem; letter-spacing: 0.08em;
+    font-family: var(--font-title, serif); font-size: 1.3rem; letter-spacing: 0.08em;
     border: none; border-radius: 50px; cursor: pointer;
-    padding: 1rem 3rem;
+    padding: 1.2rem 4rem;
     background: linear-gradient(135deg, #f5c842, #e8a020);
     color: #000; font-weight: 700;
     box-shadow: 0 4px 24px rgba(232,160,32,0.4);
