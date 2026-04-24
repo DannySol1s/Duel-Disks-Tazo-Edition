@@ -15,6 +15,9 @@
   let hasMore = $state(true);
   let searchTimeout: any;
 
+  // Estado para el detalle de la carta
+  let selectedCard = $state<YgoCard | null>(null);
+
   async function loadCards(reset = false) {
     if (isLoading || (!hasMore && !reset)) return;
     
@@ -37,7 +40,6 @@
 
       if (newCards.length < 50) hasMore = false;
       
-      // Evitar duplicados por ID
       const existingIds = new Set(allCards.map(c => c.id));
       const uniqueNew = newCards.filter(c => !existingIds.has(c.id));
       
@@ -50,7 +52,6 @@
     }
   }
 
-  // Efecto para reaccionar a filtros con un pequeño debounce
   $effect(() => {
     const q = $searchQuery;
     const a = $filterAttribute;
@@ -63,7 +64,7 @@
 
   function handleScroll(e: Event) {
     const target = e.target as HTMLElement;
-    const threshold = 200; // px antes de llegar al final
+    const threshold = 200;
     const isNearBottom = target.scrollHeight - target.scrollTop <= target.clientHeight + threshold;
     
     if (isNearBottom && !isLoading && hasMore) {
@@ -98,7 +99,11 @@
 
       <div class="cards-grid">
         {#each allCards as card (card.id)}
-          <div class="encyclopedia-card" style="--attr-color: {getAttributeColor(card.attribute)}">
+          <div 
+            class="encyclopedia-card" 
+            style="--attr-color: {getAttributeColor(card.attribute)}"
+            onclick={() => selectedCard = card}
+          >
             <div class="card-image-wrapper">
               <img src={card.card_images[0].image_url} alt={card.name} loading="lazy" />
             </div>
@@ -124,6 +129,62 @@
         <div class="empty">No se encontraron monstruos con esos criterios.</div>
       {/if}
     </div>
+
+    <!-- PANEL DE DETALLE (Curiosidades) -->
+    {#if selectedCard}
+      <div class="detail-overlay" transition:fade={{ duration: 200 }} onclick={() => selectedCard = null}>
+        <div class="detail-panel" transition:fly={{ x: 100, duration: 300 }} onclick={(e) => e.stopPropagation()}>
+          <button class="btn-close-detail" onclick={() => selectedCard = null}>✕</button>
+          
+          <div class="detail-content">
+            <div class="detail-image">
+              <img src={selectedCard.card_images[0].image_url} alt={selectedCard.name} />
+            </div>
+            
+            <div class="detail-text">
+              <span class="detail-attr" style="background: {getAttributeColor(selectedCard.attribute)}">{selectedCard.attribute}</span>
+              <h2 class="detail-title">{selectedCard.name}</h2>
+              <p class="detail-type">{selectedCard.type} | {selectedCard.race}</p>
+              
+              <div class="detail-stats-large">
+                <div class="stat-item"><span>ATK</span> <strong>{selectedCard.atk}</strong></div>
+                <div class="stat-item"><span>DEF</span> <strong>{selectedCard.def}</strong></div>
+                <div class="stat-item"><span>LVL</span> <strong>{selectedCard.level}</strong></div>
+              </div>
+
+              <div class="curiosidades-section">
+                <h3>✨ Curiosidades y Lore</h3>
+                <div class="curiosidades-grid">
+                  {#if selectedCard.archetype}
+                    <div class="curio-card">
+                      <strong>Arquetipo:</strong>
+                      <span>{selectedCard.archetype}</span>
+                    </div>
+                  {/if}
+                  
+                  <div class="curio-card">
+                    <strong>Raza:</strong>
+                    <span>{selectedCard.race}</span>
+                  </div>
+
+                  {#if selectedCard.card_sets && selectedCard.card_sets.length > 0}
+                    <div class="curio-card">
+                      <strong>Primera Aparición:</strong>
+                      <span>{selectedCard.card_sets[0].set_name}</span>
+                    </div>
+                  {/if}
+                </div>
+
+                <div class="lore-box">
+                  <strong>Descripción:</strong>
+                  <p>{selectedCard.desc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -151,6 +212,7 @@
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255,255,255,0.02);
+    position: relative;
   }
 
   .modal-header {
@@ -222,6 +284,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    cursor: pointer;
   }
 
   .encyclopedia-card:hover {
@@ -279,6 +342,93 @@
     font-weight: 500;
   }
 
+  /* DETALLE PANEL */
+  .detail-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .detail-panel {
+    width: 100%;
+    max-width: 500px;
+    background: #0f172a;
+    height: 100%;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    border-left: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    overflow-y: auto;
+    padding: 3rem 2rem;
+  }
+
+  .btn-close-detail {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: none; border: none; color: #94a3b8;
+    font-size: 1.2rem; cursor: pointer;
+  }
+
+  .detail-image {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    margin-bottom: 2rem;
+  }
+  .detail-image img { width: 100%; display: block; }
+
+  .detail-attr {
+    font-size: 0.7rem; font-weight: 800; color: #000;
+    padding: 2px 12px; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+  }
+
+  .detail-title {
+    font-family: var(--font-title, serif);
+    font-size: 2rem; color: #f8fafc;
+    margin: 0.5rem 0;
+  }
+
+  .detail-type { color: #64748b; font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+  .detail-stats-large {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .stat-item {
+    background: rgba(255,255,255,0.03); padding: 1rem;
+    border-radius: 12px; text-align: center;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .stat-item span { display: block; font-size: 0.7rem; color: #64748b; margin-bottom: 4px; }
+  .stat-item strong { font-size: 1.2rem; color: #f5c842; }
+
+  .curiosidades-section h3 {
+    font-size: 1rem; color: #f5c842; border-bottom: 1px solid rgba(245,200,66,0.2);
+    padding-bottom: 0.5rem; margin-bottom: 1rem;
+  }
+
+  .curiosidades-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .curio-card {
+    background: rgba(255,255,255,0.02); padding: 0.75rem; border-radius: 8px;
+  }
+  .curio-card strong { display: block; font-size: 0.65rem; color: #64748b; text-transform: uppercase; }
+  .curio-card span { color: #e2e8f0; font-size: 0.85rem; }
+
+  .lore-box {
+    background: rgba(245,200,66,0.03); padding: 1rem; border-radius: 12px;
+    border: 1px dashed rgba(245,200,66,0.2);
+  }
+  .lore-box strong { font-size: 0.8rem; color: #f5c842; display: block; margin-bottom: 0.5rem; }
+  .lore-box p { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; font-style: italic; margin: 0; }
+
   .loading-more, .error, .empty, .end-of-list {
     text-align: center;
     padding: 2rem;
@@ -304,6 +454,6 @@
     .modal-overlay { padding: 0; }
     .modal-content { height: 100vh; border-radius: 0; border: none; }
     .cards-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1rem; }
-    .modal-header { padding: 1rem; }
+    .detail-panel { max-width: 100%; }
   }
 </style>
