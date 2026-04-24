@@ -18,6 +18,10 @@ export interface YgoCard {
   card_images: CardImage[];
 }
 
+export interface ApiResponse {
+  data: YgoCard[];
+}
+
 /** Modo de posición de la carta */
 export type CardMode = 'attack' | 'defense';
 

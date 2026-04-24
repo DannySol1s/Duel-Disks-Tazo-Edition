@@ -32,18 +32,29 @@ export async function fetchMonsters(opts: FetchOptions = {}): Promise<YgoCard[]>
   return json.data.filter((c) => c.atk !== undefined && c.atk !== null);
 }
 
-export async function searchByName(name: string): Promise<YgoCard[]> {
+export async function searchMonsters(opts: { query?: string; attribute?: string; offset?: number; num?: number } = {}): Promise<YgoCard[]> {
   const params = new URLSearchParams({
-    fname: name,
     type: 'Normal Monster,Effect Monster,Fusion Monster,Synchro Monster,XYZ Monster,Link Monster',
-    num: '20',
+    num: String(opts.num ?? 50),
+    offset: String(opts.offset ?? 0),
   });
 
-  const res = await fetch(`${BASE}?${params}`);
-  if (!res.ok) throw new Error(`API error ${res.status}`);
+  if (opts.query) params.set('fname', opts.query);
+  if (opts.attribute && opts.attribute !== 'ALL') params.set('attribute', opts.attribute);
 
-  const json: ApiResponse = await res.json();
-  return json.data.filter((c) => c.atk !== undefined);
+  try {
+    const res = await fetch(`${BASE}?${params}`);
+    if (!res.ok) {
+      if (res.status === 404) return []; // No se encontraron resultados
+      throw new Error(`API error ${res.status}`);
+    }
+
+    const json: ApiResponse = await res.json();
+    return json.data.filter((c) => c.atk !== undefined && c.atk !== null);
+  } catch (err) {
+    console.error('Search error:', err);
+    return [];
+  }
 }
 
 export const ATTRIBUTES = ['ALL', 'DARK', 'LIGHT', 'FIRE', 'WATER', 'WIND', 'EARTH', 'DIVINE'];
