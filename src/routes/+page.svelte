@@ -2,10 +2,13 @@
   import { gameState, startGame, resetGame } from '$lib/gameStore';
   import BattlePhase from '$lib/components/BattlePhase.svelte';
   import ResultPhase from '$lib/components/ResultPhase.svelte';
+  import Encyclopedia from '$lib/components/Encyclopedia.svelte';
 
   let gs = $derived($gameState);
   let phase = $derived(gs.phase);
   let inBattle = $derived(phase === 'p1-select' || phase === 'p2-select' || phase === 'revealing' || phase === 'reveal');
+
+  let showEncyclopedia = $state(false);
 </script>
 
 <svelte:head>
@@ -21,9 +24,14 @@
   <!-- Header mínimo -->
   <header class="app-header">
     <div class="header-title">⚔️ <span>Duelo de Quintetos</span></div>
-    {#if inBattle || phase === 'result'}
-      <button class="btn-exit" onclick={resetGame}>✕ Salir</button>
-    {/if}
+    <div class="header-actions">
+      {#if phase === 'idle'}
+        <button class="btn-encyclopedia" onclick={() => showEncyclopedia = true}>📖 Enciclopedia</button>
+      {/if}
+      {#if inBattle || phase === 'result'}
+        <button class="btn-exit" onclick={resetGame}>✕ Salir</button>
+      {/if}
+    </div>
   </header>
 
   <!-- Contenido principal -->
@@ -84,6 +92,10 @@
   </main>
 </div>
 
+{#if showEncyclopedia}
+  <Encyclopedia onClose={() => showEncyclopedia = false} />
+{/if}
+
 <style>
   /* ─── Shell ──────────────────────────────────────────────────── */
   .app-shell {
@@ -106,9 +118,23 @@
     color: #e8a020; letter-spacing: 0.05em;
   }
   .header-title span { color: #e2e8f0; }
+
+  .header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-encyclopedia {
+    font-size: 0.85rem; background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4);
+    color: #e9d5ff; border-radius: 8px; padding: 6px 12px; cursor: pointer;
+    transition: all 0.2s; font-weight: 600;
+  }
+  .btn-encyclopedia:hover { background: rgba(124,58,237,0.4); box-shadow: 0 0 10px rgba(124,58,237,0.4); }
+
   .btn-exit {
     font-size: 0.75rem; background: none; border: 1px solid rgba(255,255,255,0.15);
-    color: #64748b; border-radius: 8px; padding: 4px 10px; cursor: pointer;
+    color: #64748b; border-radius: 8px; padding: 6px 12px; cursor: pointer;
     transition: all 0.2s;
   }
   .btn-exit:hover { border-color: #ef4444; color: #ef4444; }
