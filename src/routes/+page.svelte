@@ -5,7 +5,7 @@
 
   let gs = $derived($gameState);
   let phase = $derived(gs.phase);
-  let inBattle = $derived(phase === 'p1-select' || phase === 'p2-select' || phase === 'reveal');
+  let inBattle = $derived(phase === 'p1-select' || phase === 'p2-select' || phase === 'revealing' || phase === 'reveal');
 </script>
 
 <svelte:head>

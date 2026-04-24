@@ -1,5 +1,6 @@
 <script lang="ts">
   import { gameState, p1Confirm, p2Confirm, nextRound } from '$lib/gameStore';
+  import RevealCountdown from '$lib/components/RevealCountdown.svelte';
   import type { YgoCard, CardMode, PlayerSelection } from '$lib/types';
 
   let gs = $derived($gameState);
@@ -120,6 +121,12 @@
       ✅ Confirmar elección
     </button>
   </div>
+
+<!-- ════════════════════════════════════════════════════════
+     ANIMACIÓN DE REVELACIÓN (cuenta regresiva)
+     ════════════════════════════════════════════════════════ -->
+{:else if gs.phase === 'revealing' && gs.lastResult}
+  <RevealCountdown />
 
 <!-- ════════════════════════════════════════════════════════
      REVELACIÓN
