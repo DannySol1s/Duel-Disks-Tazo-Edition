@@ -16,6 +16,13 @@ export interface YgoCard {
   level: number;
   attribute: string;
   card_images: CardImage[];
+  archetype?: string;
+  race?: string;
+  card_sets?: Array<{
+    set_name: string;
+    set_code: string;
+    set_rarity: string;
+  }>;
 }
 
 export interface ApiResponse {
