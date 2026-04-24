@@ -1,63 +1,176 @@
-# ⚔️ Duel Disks: Tazo Edition (Duelo de Quintetos)
+<div align="center">
 
-¡Bienvenido a **Duel Disks: Tazo Edition**! Un juego de cartas temático de Yu-Gi-Oh! diseñado con la estética de los clásicos tazos coleccionables. Enfrenta a dos duelistas en una batalla épica de 5 rondas donde la estrategia y la suerte deciden al ganador.
+# ⚔️ Duel Disks: Tazo Edition
+### Experiencia nostálgica de duelos Yu-Gi-Oh! estilo Tazos coleccionables
 
-![Duelo de Quintetos](https://images.ygoprodeck.com/images/cards_small/83764718.jpg) <!-- Imagen de ejemplo o banner si existiera -->
+![Svelte](https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&logo=svelte&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-## 🎮 Características del Juego
+*"¿Estás listo para liberar el poder de tus cartas en un formato legendario?"*
 
-- **Duelo de Quintetos**: Cada jugador recibe 5 cartas aleatorias de la base de datos de Yu-Gi-Oh! (Speed Duel / Rush Duel).
-- **Selección Ciega**: Los jugadores eligen su carta y modo de batalla en secreto, pasando el dispositivo o simplemente ocultando su elección.
-- **Modos de Combate**: Elige entre **Modo Ataque** (⚔️) o **Modo Defensa** (🛡️) para cada ronda.
-- **Animaciones Dinámicas**:
-  - Efectos de "volteo" (flip) al revelar cartas.
-  - Cuenta regresiva dramática con efectos de relámpagos.
-  - Resplandores (glow) para los ganadores y desvanecimiento para los perdedores.
-- **Diseño Premium**: Interfaz moderna con *glassmorphism*, modo oscuro, y tipografías elegantes (Cinzel Decorative & Exo 2).
-- **Totalmente Responsivo**: Optimizado para verse en pantalla completa sin necesidad de desplazarse.
-
-## 📜 Reglas de Batalla
-
-El juego utiliza una lógica de resolución basada en los atributos clásicos de Yu-Gi-Oh!:
-
-1. **⚔️ vs ⚔️**: Gana la carta con el mayor **ATK**.
-2. **⚔️ vs 🛡️**: El atacante debe superar la **DEF** del defensor. Si la DEF es mayor o igual, el defensor gana la ronda.
-3. **🛡️ vs 🛡️**: Si ambos jugadores eligen defensa, el ganador se decide por el **Nivel (★)** de la carta.
-4. **Empate**: Si los valores son idénticos, la ronda se declara empate.
-
-*El primer duelista en ganar 3 rondas se lleva la victoria total.*
-
-## 🚀 Tecnologías Utilizadas
-
-- **Core**: [Svelte 5](https://svelte.dev/) (usando Runes como `$state` y `$derived`).
-- **Lógica**: TypeScript para un tipado seguro y manejo de estados.
-- **Estilos**: Vanilla CSS con variables personalizadas y animaciones complejas.
-- **API**: [YGOPRODeck API](https://db.ygoprodeck.com/api-guide/) para obtener datos e imágenes reales de las cartas.
-
-## 🛠️ Instalación y Uso
-
-1. **Clonar el repositorio**:
-   ```sh
-   git clone https://github.com/DannySol1s/Duel-Disks-Tazo-Edition.git
-   ```
-2. **Instalar dependencias**:
-   ```sh
-   npm install
-   ```
-3. **Ejecutar en modo desarrollo**:
-   ```sh
-   npm run dev
-   ```
-4. **Abrir en el navegador**:
-   Visita `http://localhost:5173` para empezar el duelo.
-
-## 📁 Estructura del Proyecto
-
-- `src/lib/gameStore.ts`: Motor lógico del juego y manejo de estados de Svelte.
-- `src/lib/components/`: Componentes reutilizables como `BattlePhase`, `RevealCountdown`, y `ResultPhase`.
-- `src/app.css`: Sistema de diseño global y tokens de estilo.
-- `src/routes/+page.svelte`: Punto de entrada principal y layout del juego.
+</div>
 
 ---
 
-Desarrollado con ❤️ por **Antigravity** en colaboración con el usuario. ¡Que comience el duelo!
+## 🧐 ¿Qué es?
+
+**Duel Disks: Tazo Edition** es un proyecto interactivo que fusiona la mecánica clásica de los juegos de cartas coleccionables (TCG) con la nostalgia de los **tazos** de los años 90 y 2000. El propósito principal es ofrecer un simulador de "Duelo de Quintetos" (5 vs 5) donde la estrategia visual y la rapidez de decisión son fundamentales.
+
+El proyecto nació como un desafío técnico para explorar las nuevas capacidades de **Svelte 5** (Runes), implementando un sistema de juego de selección ciega totalmente reactivo. La motivación principal fue recrear la emoción de los duelos de Yu-Gi-Oh! mediante una interfaz moderna, minimalista y altamente animada que se sienta como un producto premium en la palma de la mano.
+
+En este juego, los usuarios no solo compiten con números; experimentan una narrativa visual a través de efectos de revelación, relámpagos de victoria y una estética de *dark mode* con acentos dorados y violetas que evocan el Reino de los Duelos.
+
+---
+
+## ✨ Características Principales
+
+| Emoji | Nombre | Descripción |
+| :---: | :--- | :--- |
+| 🎴 | **Duelo de Quintetos** | Sistema de batalla 5 vs 5 con cartas aleatorias obtenidas vía API. |
+| 🔒 | **Selección Ciega** | Mecánica de juego local por turnos donde cada jugador oculta su estrategia. |
+| ⚔️ | **Modos Híbridos** | Resolución de conflictos basada en ATK vs ATK, ATK vs DEF o Nivel de carta. |
+| ⚡ | **Reveal Countdown** | Animación dramática de 3 segundos con efectos de relámpago y flip 3D. |
+| 📱 | **Responsive Pro** | Interfaz adaptativa que garantiza una experiencia sin scroll en cualquier pantalla. |
+| 💎 | **Glassmorphism** | Diseño visual basado en transparencias, desenfoques y gradientes vibrantes. |
+
+---
+
+## 🗃️ Contenido del Juego
+
+| # | Emoji + Nombre | Categoría | Descripción Breve |
+| :---: | :--- | :--- | :--- |
+| 1 | 🐉 Monstruos Normales | Contenido API | Cartas base con estadísticas puras de ATK y DEF. |
+| 2 | 🪄 Monstruos de Efecto | Contenido API | Criaturas avanzadas provenientes del formato Speed Duel. |
+| 3 | 🃏 Tazos Digitales | UI Component | Representación circular/cuadrada animada de las cartas clásicas. |
+| 4 | 🏆 Historial de Rondas | Lógica | Registro detallado de cada enfrentamiento y su ganador. |
+
+---
+
+## 🏗️ Arquitectura del Proyecto
+
+### 🛠️ Stack Tecnológico
+```text
+root
+├── Svelte 5 (Frontend Framework)
+├── TypeScript (Programming Language)
+├── Vite (Build Tool)
+└── YGOPRODeck API (Data Source)
+```
+
+### 📁 Estructura de Archivos
+```text
+src/
+├── lib/
+│   ├── components/
+│   │   ├── BattlePhase.svelte      # Orquestador principal del duelo
+│   │   ├── RevealCountdown.svelte  # Animaciones de cuenta regresiva y efectos
+│   │   ├── ResultPhase.svelte      # Pantalla final y resumen de puntuación
+│   │   └── Tazo.svelte             # Componente base de la carta/tazo
+│   ├── api.ts                      # Configuración de fetch a YGOPRODeck
+│   ├── gameStore.ts                # Estado global (Writable stores & Lógica)
+│   └── types.ts                    # Interfaces de TypeScript para el juego
+├── routes/
+│   └── +page.svelte                # Layout principal y router de fases
+└── app.css                         # Tokens de diseño y estilos globales
+```
+
+---
+
+## ⚙️ Arquitectura Técnica Central
+
+Diagrama de flujo del ciclo de vida de un duelo:
+
+```text
+[ INICIO ] --> ( Cargar Cartas API ) --> [ FASE P1 ] --( Elige Carta/Modo )--+
+                                                                             |
+      +----------------------------------------------------------------------+
+      v
+[ FASE P2 ] --( Elige Carta/Modo )--> [ REVEALING ] --( Animación Countdown )--+
+                                                                             |
+      +----------------------------------------------------------------------+
+      v
+[ REVEAL RESULT ] --( ¿Fin de Juego? )--[ SÍ ]--> [ RESULTADOS FINALES ]
+      |                                  |
+      +--[ NO (Siguiente Ronda) ]--------+
+```
+
+---
+
+## 🚀 Cómo Ejecutar
+
+### Prerrequisitos
+- Node.js (v18 o superior)
+- npm o pnpm
+
+### Instalación
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/DannySol1s/Duel-Disks-Tazo-Edition.git
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Iniciar servidor de desarrollo
+npm run dev
+```
+
+### Comandos Útiles
+| Comando | Descripción |
+| :--- | :--- |
+| `npm run build` | Genera el bundle de producción en la carpeta /dist. |
+| `npm run preview` | Previsualiza localmente la versión de producción. |
+| `npm run check` | Ejecuta validaciones de tipos y lints de Svelte. |
+
+---
+
+## 📐 Diseño Responsivo
+
+| Rango | Dispositivo Target | Comportamiento del Layout |
+| :--- | :--- | :--- |
+| `> 1024px` | Desktop | Contenedor centrado a 1000px, cartas en 5 columnas grandes. |
+| `768px - 1024px` | Tablets | Grid adaptativo, se prioriza el tamaño de la carta sobre el margen. |
+| `< 768px` | Mobile | Stack vertical en revelación, fuentes escaladas para legibilidad. |
+
+---
+
+## 🎨 Sistema de Diseño
+
+```css
+/* Tokens principales en app.css */
+:root {
+  --clr-bg: #07090f;            /* Fondo profundo */
+  --clr-gold: #e8a020;          /* Acento legendario */
+  --clr-violet: #7c3aed;        /* Energía mágica */
+  --font-title: 'Cinzel Decorative'; /* Tipografía de fantasía */
+  --font-body: 'Exo 2';         /* Tipografía tecnológica */
+}
+```
+
+---
+
+## 🎓 Valor Formativo
+
+> "El desarrollo de este proyecto permitió dominar la transición entre estados complejos y la sincronización de animaciones de alto rendimiento en el navegador."
+
+- **Aprendizajes Clave**:
+  - Implementación de **Svelte 5 Runes** para reactividad granular.
+  - Creación de sistemas de juego por fases (FSM - Finite State Machine).
+  - Animaciones 3D avanzadas y manejo de *z-index* dinámico.
+  - Optimización de consumo de APIs externas de alto volumen de datos.
+
+---
+
+## ✍️ Autor
+
+**Danny Solís**  
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DannySol1s)
+
+---
+
+<div align="center">
+
+© 2026 Duel Disks: Tazo Edition — *¡Cree en el corazón de las cartas!*
+
+</div>
