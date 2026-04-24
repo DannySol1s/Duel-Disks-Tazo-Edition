@@ -212,11 +212,11 @@
   .hand-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0.5rem; margin-bottom: 0.75rem;
+    gap: 0.8rem; margin-bottom: 0.75rem;
   }
   .card-slot {
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    padding: 6px; border-radius: 10px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 8px; border-radius: 10px; cursor: pointer;
     background: rgba(255,255,255,0.02);
     border: 2px solid rgba(255,255,255,0.06);
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
@@ -227,17 +227,17 @@
     box-shadow: 0 0 12px rgba(245,200,66,0.4);
     background: rgba(245,200,66,0.06);
   }
-  .card-img { width: 100%; aspect-ratio: 1; max-width: 90px; object-fit: cover; object-position: top; border-radius: 6px; }
+  .card-img { width: 100%; max-height: 220px; object-fit: contain; border-radius: 6px; }
   .card-name {
-    font-size: 0.65rem; font-weight: 600; color: #e2e8f0;
+    font-size: 0.85rem; font-weight: 600; color: #e2e8f0;
     text-align: center; width: 100%;
     overflow: hidden; display: -webkit-box;
     -webkit-line-clamp: 2; line-clamp: 2;
     -webkit-box-orient: vertical;
   }
-  .card-stats { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+  .card-stats { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
   .stat {
-    font-size: 0.56rem; font-weight: 700; padding: 1px 5px;
+    font-size: 0.75rem; font-weight: 700; padding: 2px 6px;
     border-radius: 4px;
   }
   .stat.atk { background: rgba(239,68,68,0.2); color: #fc8181; border: 1px solid rgba(239,68,68,0.3); }
@@ -304,14 +304,14 @@
   .rs-label { font-size: 0.65rem; letter-spacing: 0.15em; font-weight: 700; }
   .rs-label.gold { color: #e8a020; }
   .rs-label.violet { color: #a855f7; }
-  .rs-img { width: 90px; height: 90px; object-fit: cover; object-position: top; border-radius: 8px; }
+  .rs-img { width: 100%; max-width: 180px; max-height: 250px; object-fit: contain; border-radius: 8px; }
   .rs-name {
-    font-size: 0.7rem; font-weight: 600; color: #e2e8f0; text-align: center;
-    max-width: 140px; overflow: hidden; display: -webkit-box;
+    font-size: 0.85rem; font-weight: 600; color: #e2e8f0; text-align: center;
+    max-width: 180px; overflow: hidden; display: -webkit-box;
     -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;
   }
-  .rs-mode { font-size: 0.75rem; color: #94a3b8; }
-  .rs-value { font-size: 0.85rem; font-weight: 700; color: #e2e8f0; }
+  .rs-mode { font-size: 0.85rem; color: #94a3b8; }
+  .rs-value { font-size: 0.95rem; font-weight: 700; color: #e2e8f0; }
   .crown { font-size: 0.7rem; color: #f5c842; letter-spacing: 0.08em; }
 
   /* ─── VS column ──────────────────────────────────────────────── */
