@@ -1,12 +1,14 @@
 <script lang="ts">
   import '../app.css';
   import Header from '$lib/components/Header.svelte';
+
+  let { children } = $props();
 </script>
 
 <div class="stars-bg"></div>
 <Header />
 <main>
-  <slot />
+  {@render children()}
 </main>
 
 <style>
