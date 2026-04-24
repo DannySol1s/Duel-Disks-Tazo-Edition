@@ -119,7 +119,7 @@
     padding: 0.5rem; overflow: hidden;
   }
   .game-section {
-    width: 100%; max-width: 700px;
+    width: 100%; max-width: 1000px;
     height: 100%;
     display: flex;
     flex-direction: column;
