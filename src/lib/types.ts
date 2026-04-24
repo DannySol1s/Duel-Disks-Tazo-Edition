@@ -22,7 +22,7 @@ export interface YgoCard {
 export type CardMode = 'attack' | 'defense';
 
 /** Fases del juego */
-export type GamePhase = 'idle' | 'p1-select' | 'p2-select' | 'reveal' | 'result';
+export type GamePhase = 'idle' | 'p1-select' | 'p2-select' | 'revealing' | 'reveal' | 'result';
 
 export type RoundWinner = 'p1' | 'p2' | 'draw';
 
